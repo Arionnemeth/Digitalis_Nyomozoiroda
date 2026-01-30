@@ -32,7 +32,8 @@ namespace Digitalis_Nyomozoiroda
 
         public void AllapotValtoztatas(string ujallapt)
         {
-            this.allapot = ujallapt;    
+            this.allapot = ujallapt;
+            Console.WriteLine("Az ügy állapota frissült!");
         }
         public override string ToString()
         {

@@ -6,6 +6,6 @@ namespace Digitalis_Nyomozoiroda
 {
     internal class Bizonyitekkezelo
     {
-
+        private 
     }
 }
