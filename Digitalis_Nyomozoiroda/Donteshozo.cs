@@ -6,7 +6,7 @@ namespace Digitalis_Nyomozoiroda
 {
     internal class Donteshozo
     {
-        public Donteshozo(Gyanusitott g, Bizonyitek b)
+        public void Donteshozas(Gyanusitott g, Bizonyitek b)
         {
             if (b.Megbizhatosagi_ertek >= 3)
             {
