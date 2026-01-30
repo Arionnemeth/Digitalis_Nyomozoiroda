@@ -17,11 +17,29 @@ namespace Digitalis_Nyomozoiroda
 
         public void Bizonyitek_hozzaadas(Bizonyitek b)
         {
-            bizonyitekok.Add(b);
+            if (bizonyitekok.Contains(b))
+            {
+                Console.WriteLine("Ez a bizonyíték már része a raktárnak!");
+            }
+            else
+            {
+               
+                bizonyitekok.Add(b);
+               
+            }
+               
         }
         public void Bizonyitek_torlese(Bizonyitek b)
         {
-            bizonyitekok.Remove(b);
+            if (!bizonyitekok.Contains(b))
+            {
+                Console.WriteLine("Nincs ilyen bizonyíték a raktárban!");
+            }
+            else
+            {
+                bizonyitekok.Remove(b);
+            }
+               
         }
     }
 }
