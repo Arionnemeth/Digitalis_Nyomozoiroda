@@ -7,19 +7,27 @@ namespace Digitalis_Nyomozoiroda
     internal class Bizonyitekkezelo
     {
         private List<Bizonyitek> bizonyitekok;
+        private List<Bizonyitek> raktar;
 
         public Bizonyitekkezelo(List<Bizonyitek> bizonyitekok)
         {
             this.bizonyitekok = new List<Bizonyitek>(); 
+            this.raktar = new List<Bizonyitek>();
         }
 
         internal List<Bizonyitek> Bizonyitekok { get => bizonyitekok; set => bizonyitekok = value; }
+        internal List<Bizonyitek> Raktar { get => raktar; set => raktar = value; }
 
         public void Bizonyitek_hozzaadas(Bizonyitek b)
         {
-            if (bizonyitekok.Contains(b))
+           if (raktar.Contains(b))
             {
-                Console.WriteLine("Ez a bizonyíték már része a raktárnak!");
+                bizonyitekok.Add(b);
+                raktar.Remove(b);
+            }
+            else if (bizonyitekok.Contains(b))
+            {
+                Console.WriteLine("Ez a bizonyíték már része a bizonyítékoknak!");
             }
             else
             {
@@ -29,16 +37,19 @@ namespace Digitalis_Nyomozoiroda
             }
                
         }
-        public void Bizonyitek_torlese(Bizonyitek b)
+        public Bizonyitek Bizonyitek_torlese(Bizonyitek b)
         {
             if (!bizonyitekok.Contains(b))
             {
-                Console.WriteLine("Nincs ilyen bizonyíték a raktárban!");
+                Console.WriteLine("Nincs ilyen bizonyíték a bizonyítékok között!");
             }
             else
             {
+                raktar.Add(b);
                 bizonyitekok.Remove(b);
             }
+
+            return b;
                
         }
     }
