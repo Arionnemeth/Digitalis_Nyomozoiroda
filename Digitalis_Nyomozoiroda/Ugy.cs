@@ -30,6 +30,10 @@ namespace Digitalis_Nyomozoiroda
         internal List<Szemely> Resztvevok { get => resztvevok; set => resztvevok = value; }
         internal List<Bizonyitek> Bizonyitekok { get => bizonyitekok; set => bizonyitekok = value; }
 
+        public void AllapotValtoztatas(string ujallapt)
+        {
+            this.allapot = ujallapt;    
+        }
         public override string ToString()
         {
             return $"{this.ugy_azonosito}: {this.cim}: {this.leiras}: {this.allapot}, résztvett személyek: {this.resztvevok}, bizonyitékok: {this.bizonyitekok}";
