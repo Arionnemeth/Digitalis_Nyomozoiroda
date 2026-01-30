@@ -15,9 +15,10 @@ namespace Digitalis_Nyomozoiroda
 
         public string Aktualis_statusz { get => aktualis_statusz; set => aktualis_statusz = value; }
 
-        public void AllapotValtoztatas(string allapot)
+        public string AllapotValtoztatas(string allapot)
         {
             this.aktualis_statusz = allapot;
+            return this.aktualis_statusz;
         }
     }
 }
