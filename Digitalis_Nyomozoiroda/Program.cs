@@ -9,6 +9,8 @@
             Gyanusitott g = new Gyanusitott(s,70,"őrizetben");
             Donteshozo d = new Donteshozo();
             d.Donteshozas(g,b);
+           
+            
         }
     }
 }

@@ -6,10 +6,10 @@ namespace Digitalis_Nyomozoiroda
 {
     internal class Adattar
     {
-        List<Felhasznalo> felhasznalolista;
-        List<Ugy> ugyeklista;
-        List<Szemely> szemelylista;
-        List<Bizonyitek> bizonyiteklista;
+        private List<Felhasznalo> felhasznalolista;
+        private List<Ugy> ugyeklista;
+        private List<Szemely> szemelylista;
+        private List<Bizonyitek> bizonyiteklista;
 
         public Adattar(List<Felhasznalo> felhasznalolista, List<Ugy> ugyeklista, List<Szemely> szemelylista, List<Bizonyitek> bizonyiteklista)
         {

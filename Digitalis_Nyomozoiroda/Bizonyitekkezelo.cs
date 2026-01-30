@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Digitalis_Nyomozoiroda
 {
     internal class Bizonyitekkezelo
     {
+        private Adattar adattarolo;
         private List<Bizonyitek> bizonyitekok;
         private List<Bizonyitek> raktar;
 
+
         public Bizonyitekkezelo(List<Bizonyitek> bizonyitekok)
         {
-            this.bizonyitekok = new List<Bizonyitek>(); 
+            this.bizonyitekok = bizonyitekok; 
             this.raktar = new List<Bizonyitek>();
         }
 
