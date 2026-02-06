@@ -10,19 +10,22 @@ namespace Digitalis_Nyomozoiroda
         private List<Ugy> ugyeklista;
         private List<Szemely> szemelylista;
         private List<Bizonyitek> bizonyiteklista;
+        private List<Gyanusitott> gyanusitottlista;
 
-        public Adattar(List<Felhasznalo> felhasznalolista, List<Ugy> ugyeklista, List<Szemely> szemelylista, List<Bizonyitek> bizonyiteklista)
+        public Adattar(List<Felhasznalo> felhasznalolista, List<Ugy> ugyeklista, List<Szemely> szemelylista, List<Bizonyitek> bizonyiteklista, List<Gyanusitott> gyanusitottlista)
         {
             this.felhasznalolista = felhasznalolista ;
             this.ugyeklista = ugyeklista;
             this.szemelylista = szemelylista;
             this.bizonyiteklista = bizonyiteklista;
+            this.gyanusitottlista = gyanusitottlista;
         }
 
         internal List<Felhasznalo> Felhasznalolista { get => felhasznalolista; set => felhasznalolista = value; }
         internal List<Ugy> Ugyeklista { get => ugyeklista; set => ugyeklista = value; }
         internal List<Szemely> Szemelylista { get => szemelylista; set => szemelylista = value; }
         internal List<Bizonyitek> Bizonyiteklista { get => bizonyiteklista; set => bizonyiteklista = value; }
+        internal List<Gyanusitott> Gyanusitottlista { get => gyanusitottlista; set => gyanusitottlista = value; }
 
         public void ListazasUgyek() 
         {
@@ -58,6 +61,16 @@ namespace Digitalis_Nyomozoiroda
         {
             int i = 1;
             foreach (var item in this.szemelylista)
+            {
+                Console.WriteLine(i + ". :" + item);
+                i++;
+            }
+        }
+
+        public void ListazasGyanusitottak()
+        {
+            int i = 1;
+            foreach (var item in this.gyanusitottlista)
             {
                 Console.WriteLine(i + ". :" + item);
                 i++;

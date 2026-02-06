@@ -22,7 +22,13 @@ namespace Digitalis_Nyomozoiroda
             Ugy u2 = new Ugy("002", "Urbin", "hjhkjh", "kljk");
             u2.HozzatartozoSzemelyekFelvetel(s2);
             u2.HozzatartozoBizonyitekFelvetel(b2);
+            Gyanusitott g1 = new Gyanusitott(s1, 70, "őrizetben");
+            Gyanusitott g2 = new Gyanusitott(s2, 67, "megfigyelés alatt");
+            Donteshozo donteshozo = new Donteshozo();
 
+            List<Gyanusitott> gyanusitottak = new List<Gyanusitott>();
+            gyanusitottak.Add(g1);
+            gyanusitottak.Add(g2);
             List<Ugy> ugyek = new List<Ugy>();
             ugyek.Add(u1);
             ugyek.Add(u2);
@@ -35,7 +41,7 @@ namespace Digitalis_Nyomozoiroda
             List<Bizonyitek> bizonyitekok = new List<Bizonyitek>();
             bizonyitekok.Add(b1);
             bizonyitekok.Add(b2);
-            Adattar a = new Adattar(felhasznalok, ugyek,szemelyek, bizonyitekok);
+            Adattar a = new Adattar(felhasznalok, ugyek,szemelyek, bizonyitekok, gyanusitottak);
             int bekeres = 0;
             Ugy ujugy = new Ugy();
            
@@ -103,7 +109,16 @@ namespace Digitalis_Nyomozoiroda
                 }
                 if (bekeres == 5)
                 {
+                    Console.WriteLine("Vélassz egy gyanúsítottat: ");
+                    a.ListazasGyanusitottak();
+                    int gyanusitottszama = Convert.ToInt32(Console.ReadLine());
 
+
+                    Console.WriteLine("Vélassz egy bizonyítékot: ");
+                    a.ListazasBizonyítékok();
+                    int bizonyitekszam = Convert.ToInt32(Console.ReadLine());
+
+                    donteshozo.Donteshozas(a.Gyanusitottlista[gyanusitottszama -1], a.Bizonyiteklista[bizonyitekszam -1]);
                 }
 
             }
