@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Design;
+using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Digitalis_Nyomozoiroda
@@ -85,7 +86,16 @@ namespace Digitalis_Nyomozoiroda
                 }
                 if (bekeres == 3)
                 {
-
+                    Console.Write("Bizonyíték azonosító: ");
+                    int azonosito = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Típus (kép,videó,dokumentum,digitális adat): ");
+                    string tipus = Console.ReadLine();
+                    Console.Write("Leírás: ");
+                    string leiras = Console.ReadLine();
+                    Console.Write("Megbízhatóság(1-5): ");
+                    int megbizhato = Convert.ToInt32(Console.ReadLine());
+                    Bizonyitek ujbizonyitek = new Bizonyitek(azonosito,tipus,leiras,megbizhato);
+                   
                 }
                 if (bekeres == 4)
                 {
