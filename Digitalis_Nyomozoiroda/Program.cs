@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 
@@ -12,10 +13,16 @@ namespace Digitalis_Nyomozoiroda
         {
             Szemely s1 = new Szemely("Koczka Steve", 67, "Úszómester");
             Szemely s2 = new Szemely("Urbin Pork", 69, "CISCO mester");
+            Szemely s3 = new Szemely("Kis János", 8, "Fél");
+            Szemely s4 = new Szemely("Juliska", 10, "Ő is fél");
+            Tanu t1 = new Tanu(s3,"Azt hittem úszásra megyek", new DateTime(2025,06,05));
+            Tanu t2 = new Tanu(s4, "Azt hittem nyaralni megyek", new DateTime(2025,07,07));
             Felhasznalo f1 = new Felhasznalo("Andrew Tate ügynök", 007, "Nyomozó");
             Felhasznalo f2 = new Felhasznalo("BGY ügynök", 676, "Nyomozó");
             Bizonyitek b1 = new Bizonyitek(01, "digitális adat", "Limux keresési előzmények", 3);
             Bizonyitek b2 = new Bizonyitek(02, "fotó", "Kép az Urbin Islandről", 5);
+            Idovonal_esemeny i1 = new Idovonal_esemeny(new DateTime(2025,06,05), "Kihallgattuk Kis Jánost");
+            Idovonal_esemeny i2 = new Idovonal_esemeny(new DateTime(2025, 07, 07), "Kihallgattuk Juliskát");
             Ugy u1 = new Ugy("001", "Koczka", "jkhj", "jhghjg");
             u1.HozzatartozoSzemelyekFelvetel(s1);
             u1.HozzatartozoBizonyitekFelvetel(b1);
@@ -26,6 +33,12 @@ namespace Digitalis_Nyomozoiroda
             Gyanusitott g2 = new Gyanusitott(s2, 67, "megfigyelés alatt");
             Donteshozo donteshozo = new Donteshozo();
 
+            List<Idovonal_esemeny> idovonalesemeny = new List<Idovonal_esemeny>();
+            idovonalesemeny.Add(i1);
+            idovonalesemeny.Add(i2);
+            List<Tanu> tanuk = new List<Tanu>();
+            tanuk.Add(t1);
+            tanuk.Add(t2);
             List<Gyanusitott> gyanusitottak = new List<Gyanusitott>();
             gyanusitottak.Add(g1);
             gyanusitottak.Add(g2);
@@ -38,10 +51,12 @@ namespace Digitalis_Nyomozoiroda
             List<Szemely> szemelyek = new List<Szemely>();
             szemelyek.Add(s1);
             szemelyek.Add(s2);
+            szemelyek.Add(s3);
+            szemelyek.Add(s4);
             List<Bizonyitek> bizonyitekok = new List<Bizonyitek>();
             bizonyitekok.Add(b1);
             bizonyitekok.Add(b2);
-            Adattar a = new Adattar(felhasznalok, ugyek,szemelyek, bizonyitekok, gyanusitottak);
+            Adattar a = new Adattar(felhasznalok, ugyek,szemelyek, bizonyitekok, gyanusitottak, tanuk, idovonalesemeny);
             int bekeres = 0;
             Ugy ujugy = new Ugy();
            
@@ -101,11 +116,22 @@ namespace Digitalis_Nyomozoiroda
                     Console.Write("Megbízhatóság(1-5): ");
                     int megbizhato = Convert.ToInt32(Console.ReadLine());
                     Bizonyitek ujbizonyitek = new Bizonyitek(azonosito,tipus,leiras,megbizhato);
+                    bizonyitekok.Add(ujbizonyitek);
                    
                 }
                 if (bekeres == 4)
                 {
-                   
+                    Console.Write("Add meg az évet: ");
+                    int ev = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Add meg a hónapot: ");
+                    int honap = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Add meg a napot: ");
+                    int nap = Convert.ToInt32(Console.ReadLine());
+                    DateTime ujido = new DateTime(ev, honap, nap);
+                    Console.Write("Adj meg egy eseményt: ");
+                    string esemeny = Console.ReadLine();
+                    Idovonal_esemeny ujesemeny = new Idovonal_esemeny(ujido, esemeny);
+                    idovonalesemeny.Add(ujesemeny);
                 }
                 if (bekeres == 5)
                 {
