@@ -131,20 +131,42 @@ namespace Digitalis_Nyomozoiroda
                     Console.Write("Adj meg egy eseményt: ");
                     string esemeny = Console.ReadLine();
                     Idovonal_esemeny ujesemeny = new Idovonal_esemeny(ujido, esemeny);
+                    Console.WriteLine(ujido);
                     idovonalesemeny.Add(ujesemeny);
                 }
                 if (bekeres == 5)
                 {
-                    Console.WriteLine("Vélassz egy gyanúsítottat: ");
-                    a.ListazasGyanusitottak();
-                    int gyanusitottszama = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("1. Új gyanúsított felvétel\r\n2. Döntéshozás");
+                    int valasztas = Convert.ToInt32(Console.ReadLine());
+
+                    if (valasztas == 1)
+                    {
+                        Console.WriteLine("Ki a gyanúsított a személyek közül: ");
+                        a.ListazasSzemelyek();
+                        int szemelyszam = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Hányas gyanúsítottszintje van: ");
+                        int gyanusitottszint = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Milyen állapotban van a gyanusított: ");
+                        string gyanusitottallapot = Console.ReadLine();
+                        Gyanusitott ujgyanusitott = new Gyanusitott(a.Szemelylista[szemelyszam - 1], gyanusitottszint, gyanusitottallapot);
+                        gyanusitottak.Add(ujgyanusitott);
+                    }
+                    else if (valasztas == 2) 
+                    {
+
+                        Console.WriteLine("Vélassz egy gyanúsítottat: ");
+                        a.ListazasGyanusitottak();
+                        int gyanusitottszama = Convert.ToInt32(Console.ReadLine());
 
 
-                    Console.WriteLine("Vélassz egy bizonyítékot: ");
-                    a.ListazasBizonyítékok();
-                    int bizonyitekszam = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Vélassz egy bizonyítékot: ");
+                        a.ListazasBizonyítékok();
+                        int bizonyitekszam = Convert.ToInt32(Console.ReadLine());
 
-                    donteshozo.Donteshozas(a.Gyanusitottlista[gyanusitottszama -1], a.Bizonyiteklista[bizonyitekszam -1]);
+                        donteshozo.Donteshozas(a.Gyanusitottlista[gyanusitottszama - 1], a.Bizonyiteklista[bizonyitekszam - 1]);
+                    }
+
+
                 }
 
             }
