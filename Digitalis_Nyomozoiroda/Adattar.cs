@@ -33,5 +33,35 @@ namespace Digitalis_Nyomozoiroda
                 i++;
             }
         }
+
+        public void ListazasFelhasznalok()
+        {
+            int i = 1;
+            foreach (var item in this.felhasznalolista)
+            {
+                Console.WriteLine(i + ". :" + item);
+                i++;
+            }
+        }
+
+        public void ListazasBizonyítékok()
+        {
+            int i = 1;
+            foreach (var item in this.bizonyiteklista)
+            {
+                Console.WriteLine(i + ". :" + item);
+                i++;
+            }
+        }
+
+        public void ListazasSzemelyek()
+        {
+            int i = 1;
+            foreach (var item in this.szemelylista)
+            {
+                Console.WriteLine(i + ". :" + item);
+                i++;
+            }
+        }
     }
 }
