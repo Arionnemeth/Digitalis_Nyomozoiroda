@@ -15,7 +15,16 @@ namespace Digitalis_Nyomozoiroda
             Felhasznalo f2 = new Felhasznalo("BGY ügynök", 676, "Nyomozó");
             Bizonyitek b1 = new Bizonyitek(01, "digitális adat", "Limux keresési előzmények", 3);
             Bizonyitek b2 = new Bizonyitek(02, "fotó", "Kép az Urbin Islandről", 5);
+            Ugy u1 = new Ugy("001", "Koczka", "jkhj", "jhghjg");
+            u1.HozzatartozoSzemelyekFelvetel(s1);
+            u1.HozzatartozoBizonyitekFelvetel(b1);
+            Ugy u2 = new Ugy("002", "Urbin", "hjhkjh", "kljk");
+            u2.HozzatartozoSzemelyekFelvetel(s2);
+            u2.HozzatartozoBizonyitekFelvetel(b2);
 
+            List<Ugy> ugyek = new List<Ugy>();
+            ugyek.Add(u1);
+            ugyek.Add(u2);
             List<Felhasznalo> felhasznalok = new List<Felhasznalo>();
             felhasznalok.Add(f1);
             felhasznalok.Add(f2);
@@ -25,8 +34,10 @@ namespace Digitalis_Nyomozoiroda
             List<Bizonyitek> bizonyitekok = new List<Bizonyitek>();
             bizonyitekok.Add(b1);
             bizonyitekok.Add(b2);
-
+            Adattar a = new Adattar(felhasznalok, ugyek,szemelyek, bizonyitekok);
             int bekeres = 0;
+            Ugy ujugy = new Ugy();
+           
             do
             {
                 Console.WriteLine("1. Ügyek kezelése\r\n2. Személyek kezelése\r\n3. Bizonyítékok kezelése\r\n4. Idővonal megtekintése\r\n5. Elemzés / döntések\r\n6. Kilépés");
@@ -34,13 +45,15 @@ namespace Digitalis_Nyomozoiroda
 
                 if (bekeres == 1)
                 {
+                    Console.Write("Ügy azonosító: ");
+                    string azonosito = Console.ReadLine();
                     Console.Write("Cím: ");
                     string cim = Console.ReadLine();
                     Console.Write("Leírás: ");
                     string leiras = Console.ReadLine();
                     Console.Write("Állapot: ");
                     string allapot = Console.ReadLine();
-                    Ugy ujugy = new Ugy(001, cim, leiras, allapot);
+                    ujugy = new Ugy("001", cim, leiras, allapot);
                     ujugy.HozzatartozoSzemelyekFelvetel(s2);
                     ujugy.HozzatartozoBizonyitekFelvetel(b2);
                 }
@@ -54,9 +67,12 @@ namespace Digitalis_Nyomozoiroda
                 }
                 if (bekeres == 4)
                 {
-                   /* Console.Write("Ügy állapotának változtatása erre: ");
+                    Console.WriteLine("Melyik ügyet akarja változtatni: ");
+                    a.ListazasUgyek();
+                    int ugyszam = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Ügy állapotának változtatása erre: ");
                     string ujallapot = Console.ReadLine();
-                    ujugy.AllapotValtoztatas(ujallapot);*/
+                    a.Ugyeklista[ugyszam-1].AllapotValtoztatas(ujallapot);
                 }
                 if (bekeres == 5)
                 {

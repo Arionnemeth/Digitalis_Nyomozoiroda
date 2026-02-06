@@ -6,14 +6,24 @@ namespace Digitalis_Nyomozoiroda
 {
     internal class Ugy
     {
-        private int ugy_azonosito;
+        private string ugy_azonosito;
         private string cim;
         private string leiras;
         private string allapot;
         private List<Szemely> resztvevok;
         private List<Bizonyitek> bizonyitekok;
 
-        public Ugy(int ugy_azonosito, string cim, string leiras, string allapot)
+
+        public Ugy()
+        {
+            this.ugy_azonosito = "";
+            this.cim = "";
+            this.leiras = "";
+            this.allapot = "";
+            this.resztvevok = new List<Szemely>();
+            this.bizonyitekok = new List<Bizonyitek>();
+        }
+        public Ugy(string ugy_azonosito, string cim, string leiras, string allapot)
         {
             this.ugy_azonosito = ugy_azonosito;
             this.cim = cim;
@@ -23,7 +33,7 @@ namespace Digitalis_Nyomozoiroda
             this.bizonyitekok = new List<Bizonyitek>();
         }
 
-        public int Ugy_azonosito { get => ugy_azonosito; set => ugy_azonosito = value; }
+        public string Ugy_azonosito { get => ugy_azonosito; set => ugy_azonosito = value; }
         public string Cim { get => cim; set => cim = value; }
         public string Leiras { get => leiras; set => leiras = value; }
         public string Allapot { get => allapot; set => allapot = value; }
