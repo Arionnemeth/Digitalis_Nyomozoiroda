@@ -59,7 +59,15 @@ namespace Digitalis_Nyomozoiroda
                 }
                 if (bekeres == 2)
                 {
-
+                    a.ListazasSzemelyek();
+                    Console.Write("Név: ");
+                    string nev = Console.ReadLine();
+                    Console.Write("Életkor: ");
+                    int eletkor = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Megjegyzés: ");
+                    string megjegyzes = Console.ReadLine();
+                    Szemely ujszemely = new Szemely(nev, eletkor , megjegyzes);
+                    szemelyek.Add(ujszemely);
                 }
                 if (bekeres == 3)
                 {
