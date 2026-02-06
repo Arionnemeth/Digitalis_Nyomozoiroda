@@ -45,17 +45,31 @@ namespace Digitalis_Nyomozoiroda
 
                 if (bekeres == 1)
                 {
-                    Console.Write("Ügy azonosító: ");
-                    string azonosito = Console.ReadLine();
-                    Console.Write("Cím: ");
-                    string cim = Console.ReadLine();
-                    Console.Write("Leírás: ");
-                    string leiras = Console.ReadLine();
-                    Console.Write("Állapot: ");
-                    string allapot = Console.ReadLine();
-                    ujugy = new Ugy("001", cim, leiras, allapot);
-                    ujugy.HozzatartozoSzemelyekFelvetel(s2);
-                    ujugy.HozzatartozoBizonyitekFelvetel(b2);
+                    Console.WriteLine("1. Új ügy létrehozása\r\n2. Ügy állapotáak megváltoztatása");
+                    int valasztasod = Convert.ToInt32(Console.ReadLine());
+                    if (valasztasod == 1)
+                    {
+                        Console.Write("Ügy azonosító: ");
+                        string azonosito = Console.ReadLine();
+                        Console.Write("Cím: ");
+                        string cim = Console.ReadLine();
+                        Console.Write("Leírás: ");
+                        string leiras = Console.ReadLine();
+                        Console.Write("Állapot: ");
+                        string allapot = Console.ReadLine();
+                        ujugy = new Ugy("001", cim, leiras, allapot);
+                        ujugy.HozzatartozoSzemelyekFelvetel(s2);
+                        ujugy.HozzatartozoBizonyitekFelvetel(b2);
+                    }
+                    else if (valasztasod == 2)
+                    {
+                        Console.WriteLine("Melyik ügyet akarja változtatni: ");
+                        a.ListazasUgyek();
+                        int ugyszam = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Ügy állapotának változtatása erre: ");
+                        string ujallapot = Console.ReadLine();
+                        a.Ugyeklista[ugyszam - 1].AllapotValtoztatas(ujallapot);
+                    }
                 }
                 if (bekeres == 2)
                 {
@@ -75,12 +89,7 @@ namespace Digitalis_Nyomozoiroda
                 }
                 if (bekeres == 4)
                 {
-                    Console.WriteLine("Melyik ügyet akarja változtatni: ");
-                    a.ListazasUgyek();
-                    int ugyszam = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Ügy állapotának változtatása erre: ");
-                    string ujallapot = Console.ReadLine();
-                    a.Ugyeklista[ugyszam-1].AllapotValtoztatas(ujallapot);
+                   
                 }
                 if (bekeres == 5)
                 {
