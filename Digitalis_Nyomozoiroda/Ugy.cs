@@ -13,7 +13,7 @@ namespace Digitalis_Nyomozoiroda
         private List<Szemely> resztvevok;
         private List<Bizonyitek> bizonyitekok;
 
-        public Ugy(int ugy_azonosito, string cim, string leiras, string allapot, List<Szemely> resztvevok, List<Bizonyitek> bizonyitekok)
+        public Ugy(int ugy_azonosito, string cim, string leiras, string allapot)
         {
             this.ugy_azonosito = ugy_azonosito;
             this.cim = cim;
@@ -29,6 +29,17 @@ namespace Digitalis_Nyomozoiroda
         public string Allapot { get => allapot; set => allapot = value; }
         internal List<Szemely> Resztvevok { get => resztvevok; set => resztvevok = value; }
         internal List<Bizonyitek> Bizonyitekok { get => bizonyitekok; set => bizonyitekok = value; }
+
+
+        public void HozzatartozoSzemelyekFelvetel(Szemely sz)
+        {
+            this.resztvevok.Add(sz);
+        }
+
+        public void HozzatartozoBizonyitekFelvetel(Bizonyitek b)
+        {
+            this.bizonyitekok.Add(b);
+        }
 
         public void AllapotValtoztatas(string ujallapt)
         {
