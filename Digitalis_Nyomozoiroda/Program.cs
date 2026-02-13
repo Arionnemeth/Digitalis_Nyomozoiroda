@@ -23,10 +23,10 @@ namespace Digitalis_Nyomozoiroda
             Bizonyitek b2 = new Bizonyitek(02, "fotó", "Kép az Urbin Islandről", 5);
             Idovonal_esemeny i1 = new Idovonal_esemeny(new DateTime(2025,06,05), "Kihallgattuk Kis Jánost");
             Idovonal_esemeny i2 = new Idovonal_esemeny(new DateTime(2025, 07, 07), "Kihallgattuk Juliskát");
-            Ugy u1 = new Ugy("001", "Koczka", "jkhj", "jhghjg");
+            Ugy u1 = new Ugy("001", "Koczka", "Linux csapda", "folyamatban");
             u1.HozzatartozoSzemelyekFelvetel(s1);
             u1.HozzatartozoBizonyitekFelvetel(b1);
-            Ugy u2 = new Ugy("002", "Urbin", "hjhkjh", "kljk");
+            Ugy u2 = new Ugy("002", "Urbin", "Urbin Island", "folyamatban");
             u2.HozzatartozoSzemelyekFelvetel(s2);
             u2.HozzatartozoBizonyitekFelvetel(b2);
             Gyanusitott g1 = new Gyanusitott(s1, 70, "őrizetben");
@@ -59,7 +59,11 @@ namespace Digitalis_Nyomozoiroda
             Adattar a = new Adattar(felhasznalok, ugyek,szemelyek, bizonyitekok, gyanusitottak, tanuk, idovonalesemeny);
             int bekeres = 0;
             Ugy ujugy = new Ugy();
-           
+            a.Szemelylista.Remove(s1);
+            a.Szemelylista.Remove(s2);
+            a.Szemelylista.Remove(s3);
+            a.Szemelylista.Remove(s4);
+
             do
             {
                 Console.WriteLine("1. Ügyek kezelése\r\n2. Személyek kezelése\r\n3. Bizonyítékok kezelése\r\n4. Idővonal megtekintése\r\n5. Elemzés / döntések\r\n6. Kilépés");
@@ -67,7 +71,7 @@ namespace Digitalis_Nyomozoiroda
 
                 if (bekeres == 1)
                 {
-                    Console.WriteLine("1. Új ügy létrehozása\r\n2. Ügy állapotáak megváltoztatása");
+                    Console.WriteLine("1. Új ügy létrehozása\r\n2. Ügy állapotának megváltoztatása");
                     int valasztasod = Convert.ToInt32(Console.ReadLine());
                     if (valasztasod == 1)
                     {
@@ -95,15 +99,38 @@ namespace Digitalis_Nyomozoiroda
                 }
                 if (bekeres == 2)
                 {
-                    a.ListazasSzemelyek();
-                    Console.Write("Név: ");
-                    string nev = Console.ReadLine();
-                    Console.Write("Életkor: ");
-                    int eletkor = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Megjegyzés: ");
-                    string megjegyzes = Console.ReadLine();
-                    Szemely ujszemely = new Szemely(nev, eletkor , megjegyzes);
-                    szemelyek.Add(ujszemely);
+                    Console.WriteLine("1. Új személy hozzáadása\r\n2. Új tanu hozzáadása");
+                    int valasztas = Convert.ToInt32(Console.ReadLine());
+                    if(valasztas == 1)
+                    {
+                        a.ListazasSzemelyek();
+                        Console.Write("Név: ");
+                        string nev = Console.ReadLine();
+                        Console.Write("Életkor: ");
+                        int eletkor = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Megjegyzés: ");
+                        string megjegyzes = Console.ReadLine();
+                        Szemely ujszemely = new Szemely(nev, eletkor, megjegyzes);
+                        szemelyek.Add(ujszemely);
+                    }
+                    else if (valasztas == 2)
+                    {
+                        Console.WriteLine("Ki a tanu a személyek közül: ");
+                        a.ListazasSzemelyek();
+                        int szemelyszam = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Mi a tanu vallomása: ");
+                        string vallomasa = Console.ReadLine();
+                        Console.Write("Add meg az évet: ");
+                        int ev = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Add meg a hónapot: ");
+                        int honap = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Add meg a napot: ");
+                        int nap = Convert.ToInt32(Console.ReadLine());
+                        DateTime ujido = new DateTime(ev, honap, nap);
+                        Tanu ujtanu = new Tanu(a.Szemelylista[szemelyszam - 1], vallomasa, ujido);
+                        tanuk.Add(ujtanu);
+                        a.Szemelylista.Remove(a.Szemelylista[szemelyszam - 1]);
+                    }
                 }
                 if (bekeres == 3)
                 {
@@ -136,7 +163,7 @@ namespace Digitalis_Nyomozoiroda
                 }
                 if (bekeres == 5)
                 {
-                    Console.WriteLine("1. Új gyanúsított felvétel\r\n2. Döntéshozás");
+                    Console.WriteLine("1. Új gyanúsított felvéte\r\n2. Döntéshozás\r\n3. Új tanu felvétele");
                     int valasztas = Convert.ToInt32(Console.ReadLine());
 
                     if (valasztas == 1)
@@ -144,12 +171,13 @@ namespace Digitalis_Nyomozoiroda
                         Console.WriteLine("Ki a gyanúsított a személyek közül: ");
                         a.ListazasSzemelyek();
                         int szemelyszam = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Hányas gyanúsítottszintje van: ");
+                        Console.Write("Hányas gyanúsítottszintje van: ");
                         int gyanusitottszint = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Milyen állapotban van a gyanusított: ");
+                        Console.Write("Milyen állapotban van a gyanusított: ");
                         string gyanusitottallapot = Console.ReadLine();
                         Gyanusitott ujgyanusitott = new Gyanusitott(a.Szemelylista[szemelyszam - 1], gyanusitottszint, gyanusitottallapot);
                         gyanusitottak.Add(ujgyanusitott);
+                        a.Szemelylista.Remove(a.Szemelylista[szemelyszam-1]);
                     }
                     else if (valasztas == 2) 
                     {
@@ -165,8 +193,7 @@ namespace Digitalis_Nyomozoiroda
 
                         donteshozo.Donteshozas(a.Gyanusitottlista[gyanusitottszama - 1], a.Bizonyiteklista[bizonyitekszam - 1]);
                     }
-
-
+                   
                 }
 
             }
