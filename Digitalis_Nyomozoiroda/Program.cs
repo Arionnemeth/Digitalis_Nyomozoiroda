@@ -186,7 +186,7 @@ namespace Digitalis_Nyomozoiroda
                         a.ListazasSzemelyek();
                         int szemelyszam = Convert.ToInt32(Console.ReadLine());
 
-                        Console.Write("Hányas gyanúsítottszintje van: ");
+                        Console.Write("Hányas gyanúsítottszintje van(1-100): ");
                         int gyanusitottszint = Convert.ToInt32(Console.ReadLine());
                         Console.Write("Milyen állapotban van a gyanusított: ");
                         string gyanusitottallapot = Console.ReadLine();
