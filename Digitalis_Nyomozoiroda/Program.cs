@@ -19,6 +19,7 @@ namespace Digitalis_Nyomozoiroda
             List<Felhasznalo> felhasznalok = new List<Felhasznalo>();
             List<Szemely> szemelyek = new List<Szemely>();
             List<Bizonyitek> bizonyitekok = new List<Bizonyitek>();
+            List<Bizonyitek> raktar = new List<Bizonyitek>();
             Adattar a = new Adattar(felhasznalok, ugyek,szemelyek, bizonyitekok, gyanusitottak, tanuk, idovonalesemeny);
             int bekeres = 0;
             Ugy ujugy = new Ugy();
@@ -93,16 +94,44 @@ namespace Digitalis_Nyomozoiroda
                 }
                 if (bekeres == 3)
                 {
-                    Console.Write("Bizonyíték azonosító: ");
-                    int azonosito = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Típus (kép,videó,dokumentum,digitális adat): ");
-                    string tipus = Console.ReadLine();
-                    Console.Write("Leírás: ");
-                    string leiras = Console.ReadLine();
-                    Console.Write("Megbízhatóság(1-5): ");
-                    int megbizhato = Convert.ToInt32(Console.ReadLine());
-                    Bizonyitek ujbizonyitek = new Bizonyitek(azonosito,tipus,leiras,megbizhato);
-                    bizonyitekok.Add(ujbizonyitek);
+                    Console.WriteLine("1. Új bizonyíték hozzáadása\r\n2. Bizonyíték törlése");
+                    int valasztas = Convert.ToInt32(Console.ReadLine());
+                    if (valasztas == 1)
+                    {
+                        Console.Write("Bizonyíték azonosító: ");
+                        int azonosito = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Típus (kép,videó,dokumentum,digitális adat): ");
+                        string tipus = Console.ReadLine();
+                        Console.Write("Leírás: ");
+                        string leiras = Console.ReadLine();
+                        Console.Write("Megbízhatóság(1-5): ");
+                        int megbizhato = Convert.ToInt32(Console.ReadLine());
+                        Bizonyitek ujbizonyitek = new Bizonyitek(azonosito, tipus, leiras, megbizhato);
+                        if (bizonyitekok.Contains(ujbizonyitek))
+                        {
+                            Console.WriteLine("A bizonyíték már szerepel a listában!");
+                        }
+                        else if (raktar.Contains(ujbizonyitek))
+                        {
+                            bizonyitekok.Add(ujbizonyitek);
+                            raktar.Remove(ujbizonyitek);
+                        }
+                        else
+                        {
+                            bizonyitekok.Add(ujbizonyitek);
+                        }
+                     
+                    }
+                    else if (valasztas == 2)
+                    {
+                        Console.WriteLine("Melyik bizonyítékot szeretnéd törölni: ");
+                        a.ListazasBizonyítékok();
+                        int valasztasod = Convert.ToInt32(Console.ReadLine());
+                        raktar.Add(a.Bizonyiteklista[valasztasod - 1]);
+                        bizonyitekok.Remove(a.Bizonyiteklista[valasztasod - 1]);
+                        Console.WriteLine("Sikeresen törölted a bizonyítékot!");
+                    }
+                    
                    
                 }
                 if (bekeres == 4)
