@@ -197,12 +197,12 @@ namespace Digitalis_Nyomozoiroda
                     else if (valasztas == 2) 
                     {
 
-                        Console.WriteLine("Vélassz egy gyanúsítottat: ");
+                        Console.WriteLine("Válassz egy gyanúsítottat: ");
                         a.ListazasGyanusitottak();
                         int gyanusitottszama = Convert.ToInt32(Console.ReadLine());
 
 
-                        Console.WriteLine("Vélassz egy bizonyítékot: ");
+                        Console.WriteLine("Válassz egy bizonyítékot: ");
                         a.ListazasBizonyítékok();
                         int bizonyitekszam = Convert.ToInt32(Console.ReadLine());
 
