@@ -5,7 +5,7 @@ using System.Text;
 namespace Digitalis_Nyomozoiroda
 {
     internal class Donteshozo
-    {
+    { 
         public void Donteshozas(Gyanusitott g, Bizonyitek b)
         {
             if (b.Megbizhatosagi_ertek >= 3)
